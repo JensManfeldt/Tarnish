@@ -1,0 +1,23 @@
+# * means list
+
+Prog =  [Decl | [Stm ;]]*
+
+Stm =   Ident = Exp
+        Print ( Exp )
+        Ident ( [Exp]* )
+        If ( Exp ) { [Stm ;]* }
+        If ( Exp ) { [Stm ;]* } else { [Stm ;]* }
+
+Exp =   Exp + Exp
+        Exp - Exp
+        Exp * Exp
+        Exp / Exp
+        Exp == Exp
+        Exp < Exp
+        Exp <= Exp
+        Exp > Exp
+        Exp >= Exp
+        Int
+        Ident
+
+Decl = fn Ident ( [Ident]* ) { [Stm ;]* return Exp ; }

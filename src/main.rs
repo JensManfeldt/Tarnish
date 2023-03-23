@@ -1,3 +1,5 @@
+mod lexer;
+
 fn main() {
-    println!("Hello, world!");
+    println!("{:?}", lexer::tokenize("asd = 123 + 345 - 4353 ;").0);
 }
