@@ -1,0 +1,9 @@
+WHITESPACE = _{ " " | "\t" | NEWLINE }
+
+bin_op = {"+" | "-" | "*" | "/" | "==" | "<" | "<=" | ">" | ">="}
+
+ident = { !ASCII_DIGIT ~ (ASCII_ALPHANUMERIC | "_")+ }
+
+const = { ASCII_DIGIT+ }
+
+exp = { (ident | const) ~ bin_op ~ exp | ident | const }

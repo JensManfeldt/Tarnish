@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-
+//RIP LEXER
 #[derive(Debug)]
 pub enum Token {
     Int(i64),
