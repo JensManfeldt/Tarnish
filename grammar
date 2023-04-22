@@ -4,9 +4,9 @@ Prog =  [Decl | [Stm ;]]*
 
 Stm =   Ident = Exp
         Print ( Exp )
-        Ident ( [Exp]* )
         If ( Exp ) { [Stm ;]* }
         If ( Exp ) { [Stm ;]* } else { [Stm ;]* }
+        Exp
 
 Exp =   Exp + Exp
         Exp - Exp
@@ -17,6 +17,7 @@ Exp =   Exp + Exp
         Exp <= Exp
         Exp > Exp
         Exp >= Exp
+        Ident ( [Exp]* )
         Int
         Ident
 

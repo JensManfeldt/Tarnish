@@ -1,9 +1,33 @@
 WHITESPACE = _{ " " | "\t" | NEWLINE }
 
-bin_op = {"+" | "-" | "*" | "/" | "==" | "<" | "<=" | ">" | ">="}
+add = { "+" }
+sub = { "-" }
+mul = { "*" }
+div = { "/" }
+eq = { "==" }
+lt = { "<" }
+leq = { "<=" }
+gt = { ">" }
+geq = { ">=" }
+bin_op = {add | sub | mul | div | eq | lt | leq | gt | geq } 
 
 ident = { !ASCII_DIGIT ~ (ASCII_ALPHANUMERIC | "_")+ }
 
 const = { ASCII_DIGIT+ }
 
-exp = { (ident | const) ~ bin_op ~ exp | ident | const }
+exp = { (ident | const) ~ bin_op ~ exp | ident | const | "(" ~ exp ~ ")" }
+
+assign = { ident ~ "=" ~ exp }
+
+if_then = { "if" ~ exp ~ block } 
+
+if_then_else = { "if" ~ exp ~ block ~ "else" ~ block }
+
+print = { "print" ~ "(" ~ exp ~ ")" }
+
+
+stm = { (assign | exp | if_then | if_then_else | print) ~ ";" }
+
+block = { "{" ~ stm* ~ "}" }
+
+prog = { SOI ~ stm+ ~ EOI }
